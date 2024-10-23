@@ -17,7 +17,13 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule }) => {
       { name: 'タスク', icon: CheckSquare },
       { name: 'ガントチャート', icon: Calendar },
       { name: '課題トラッカー', icon: MessageSquare },
+      { name: '社内プロジェクト', icon: Briefcase, filter: 'internal' },
+      { name: '顧客プロジェクト', icon: Briefcase, filter: 'customer' },
     ],
+  };
+
+  const handleFilterClick = (filter: 'internal' | 'customer') => {
+    // Implement filter logic here
   };
 
   const items = sidebarItems[activeModule as keyof typeof sidebarItems] || [];
@@ -32,6 +38,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule }) => {
               <a
                 href="#"
                 className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
+                onClick={() => item.filter && handleFilterClick(item.filter)}
               >
                 <item.icon size={20} />
                 <span>{item.name}</span>
