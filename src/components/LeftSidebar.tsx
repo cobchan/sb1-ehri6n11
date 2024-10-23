@@ -3,9 +3,10 @@ import { Users, Briefcase, BarChart, List, Calendar, MessageSquare, CheckSquare 
 
 interface LeftSidebarProps {
   activeModule: string;
+  setFilter: (filter: 'all' | 'internal' | 'customer') => void;
 }
 
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule }) => {
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule, setFilter }) => {
   const sidebarItems = {
     crm: [
       { name: '顧客一覧', icon: Users },
@@ -28,7 +29,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule }) => {
   };
 
   const handleFilterClick = (filter: 'internal' | 'customer') => {
-    // Implement filter logic here
+    setFilter(filter);
   };
 
   const items = sidebarItems[activeModule as keyof typeof sidebarItems] || [];
