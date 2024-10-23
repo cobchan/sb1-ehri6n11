@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Clipboard, Calendar, CheckSquare, AlertTriangle } from 'lucide-react';
 
-const Projects: React.FC = () => {
-  const [filter, setFilter] = useState<'all' | 'internal' | 'customer'>('all');
+interface ProjectsProps {
+  filter: 'all' | 'internal' | 'customer';
+  setFilter: (filter: 'all' | 'internal' | 'customer') => void;
+}
 
+const Projects: React.FC<ProjectsProps> = ({ filter, setFilter }) => {
   const projects = [
     { id: 1, name: 'ウェブサイトリニューアル', startDate: '2024-04-01', endDate: '2024-06-30', progress: 25, tasks: 20, issues: 3, type: 'customer' },
     { id: 2, name: 'モバイルアプリ開発', startDate: '2024-05-15', endDate: '2024-09-30', progress: 10, tasks: 35, issues: 5, type: 'customer' },
