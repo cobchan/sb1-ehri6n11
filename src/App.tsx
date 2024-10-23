@@ -7,14 +7,15 @@ import Footer from './components/Footer';
 
 const App: React.FC = () => {
   const [activeModule, setActiveModule] = useState('dashboard');
+  const [filter, setFilter] = useState<'all' | 'internal' | 'customer'>('all');
 
   return (
     <div className="flex flex-col h-screen">
       <Header setActiveModule={setActiveModule} />
       <div className="flex flex-1 overflow-hidden">
-        <LeftSidebar activeModule={activeModule} />
+        <LeftSidebar activeModule={activeModule} setFilter={setFilter} />
         <main className="flex-1 overflow-auto p-4">
-          <MainArea activeModule={activeModule} />
+          <MainArea activeModule={activeModule} setFilter={setFilter} />
         </main>
         <RightSidebar activeModule={activeModule} />
       </div>

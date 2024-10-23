@@ -18,7 +18,7 @@ const MainArea: React.FC<MainAreaProps> = ({ activeModule, setFilter }) => {
       case 'crm':
         return <CRM />;
       case 'projects':
-        return <Projects filter={filter} setFilter={setFilterState} />;
+        return <Projects filter={filter} setFilter={setFilter} />;
       default:
         return <div>選択されたモジュール: {activeModule}</div>;
     }
