@@ -3,10 +3,9 @@ import { Users, Briefcase, BarChart, List, Calendar, MessageSquare, CheckSquare 
 
 interface LeftSidebarProps {
   activeModule: string;
-  setFilter: (filter: 'all' | 'internal' | 'customer') => void;
 }
 
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule, setFilter }) => {
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule }) => {
   const sidebarItems = {
     crm: [
       { name: '顧客一覧', icon: Users },
@@ -17,20 +16,15 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule, setFilter }) =>
       {
         name: 'プロジェクト一覧',
         icon: List,
-        filter: 'all',
         subItems: [
-          { name: '社内プロジェクト', icon: Briefcase, filter: 'internal' },
-          { name: '顧客プロジェクト', icon: Briefcase, filter: 'customer' },
+          { name: '社内プロジェクト', icon: Briefcase },
+          { name: '顧客プロジェクト', icon: Briefcase },
         ],
       },
       { name: 'タスク', icon: CheckSquare },
       { name: 'ガントチャート', icon: Calendar },
       { name: '課題トラッカー', icon: MessageSquare },
     ],
-  };
-
-  const handleFilterClick = (filter: 'all' | 'internal' | 'customer') => {
-    setFilter(filter);
   };
 
   const items = sidebarItems[activeModule as keyof typeof sidebarItems] || [];
@@ -45,7 +39,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule, setFilter }) =>
               <a
                 href="#"
                 className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
-                onClick={() => item.filter && handleFilterClick(item.filter)}
               >
                 <item.icon size={20} />
                 <span>{item.name}</span>
@@ -57,7 +50,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule, setFilter }) =>
                       <a
                         href="#"
                         className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
-                        onClick={() => subItem.filter && handleFilterClick(subItem.filter)}
                       >
                         <subItem.icon size={20} />
                         <span>{subItem.name}</span>
