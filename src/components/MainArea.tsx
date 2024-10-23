@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Dashboard from './modules/Dashboard';
 import CRM from './modules/CRM';
 import Projects from './modules/Projects';
@@ -8,6 +8,8 @@ interface MainAreaProps {
 }
 
 const MainArea: React.FC<MainAreaProps> = ({ activeModule }) => {
+  const [filter, setFilter] = useState<'all' | 'internal' | 'customer'>('all');
+
   const renderModule = () => {
     switch (activeModule) {
       case 'dashboard':
@@ -15,7 +17,7 @@ const MainArea: React.FC<MainAreaProps> = ({ activeModule }) => {
       case 'crm':
         return <CRM />;
       case 'projects':
-        return <Projects />;
+        return <Projects filter={filter} setFilter={setFilter} />;
       default:
         return <div>選択されたモジュール: {activeModule}</div>;
     }

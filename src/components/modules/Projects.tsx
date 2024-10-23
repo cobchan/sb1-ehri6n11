@@ -1,18 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Clipboard, Calendar, CheckSquare, AlertTriangle } from 'lucide-react';
 
 const Projects: React.FC = () => {
+  const [filter, setFilter] = useState<'all' | 'internal' | 'customer'>('all');
+
   const projects = [
-    { id: 1, name: 'ウェブサイトリニューアル', startDate: '2024-04-01', endDate: '2024-06-30', progress: 25, tasks: 20, issues: 3 },
-    { id: 2, name: 'モバイルアプリ開発', startDate: '2024-05-15', endDate: '2024-09-30', progress: 10, tasks: 35, issues: 5 },
-    { id: 3, name: 'データ分析システム構築', startDate: '2024-06-01', endDate: '2024-08-31', progress: 0, tasks: 15, issues: 1 },
-    { id: 4, name: 'セキュリティ強化プロジェクト', startDate: '2024-07-01', endDate: '2024-09-15', progress: 5, tasks: 25, issues: 2 },
-    { id: 5, name: '社内トレーニングプログラム', startDate: '2024-08-01', endDate: '2024-10-31', progress: 0, tasks: 10, issues: 0 },
+    { id: 1, name: 'ウェブサイトリニューアル', startDate: '2024-04-01', endDate: '2024-06-30', progress: 25, tasks: 20, issues: 3, type: 'customer' },
+    { id: 2, name: 'モバイルアプリ開発', startDate: '2024-05-15', endDate: '2024-09-30', progress: 10, tasks: 35, issues: 5, type: 'customer' },
+    { id: 3, name: 'データ分析システム構築', startDate: '2024-06-01', endDate: '2024-08-31', progress: 0, tasks: 15, issues: 1, type: 'internal' },
+    { id: 4, name: 'セキュリティ強化プロジェクト', startDate: '2024-07-01', endDate: '2024-09-15', progress: 5, tasks: 25, issues: 2, type: 'internal' },
+    { id: 5, name: '社内トレーニングプログラム', startDate: '2024-08-01', endDate: '2024-10-31', progress: 0, tasks: 10, issues: 0, type: 'internal' },
   ];
+
+  const filteredProjects = projects.filter(project => {
+    if (filter === 'all') return true;
+    return project.type === filter;
+  });
 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">プロジェクト管理</h1>
+      <div className="mb-4">
+        <button
+          onClick={() => setFilter('all')}
+          className={`mr-2 px-4 py-2 rounded ${filter === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+        >
+          全てのプロジェクト
+        </button>
+        <button
+          onClick={() => setFilter('internal')}
+          className={`mr-2 px-4 py-2 rounded ${filter === 'internal' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+        >
+          社内プロジェクト
+        </button>
+        <button
+          onClick={() => setFilter('customer')}
+          className={`px-4 py-2 rounded ${filter === 'customer' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+        >
+          顧客プロジェクト
+        </button>
+      </div>
       <table className="min-w-full bg-white">
         <thead>
           <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -24,7 +51,7 @@ const Projects: React.FC = () => {
           </tr>
         </thead>
         <tbody className="text-gray-600 text-sm font-light">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <tr key={project.id} className="border-b border-gray-200 hover:bg-gray-100">
               <td className="py-3 px-6 text-left whitespace-nowrap">
                 <div className="flex items-center">
