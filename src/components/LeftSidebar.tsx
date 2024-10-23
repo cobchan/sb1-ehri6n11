@@ -17,6 +17,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule, setFilter }) =>
       {
         name: 'プロジェクト一覧',
         icon: List,
+        filter: 'all',
         subItems: [
           { name: '社内プロジェクト', icon: Briefcase, filter: 'internal' },
           { name: '顧客プロジェクト', icon: Briefcase, filter: 'customer' },
@@ -28,7 +29,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ activeModule, setFilter }) =>
     ],
   };
 
-  const handleFilterClick = (filter: 'internal' | 'customer') => {
+  const handleFilterClick = (filter: 'all' | 'internal' | 'customer') => {
     setFilter(filter);
   };
 

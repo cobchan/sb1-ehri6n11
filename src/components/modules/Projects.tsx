@@ -3,10 +3,9 @@ import { Clipboard, Calendar, CheckSquare, AlertTriangle } from 'lucide-react';
 
 interface ProjectsProps {
   filter: 'all' | 'internal' | 'customer';
-  setFilter: (filter: 'all' | 'internal' | 'customer') => void;
 }
 
-const Projects: React.FC<ProjectsProps> = ({ filter, setFilter }) => {
+const Projects: React.FC<ProjectsProps> = ({ filter }) => {
   const projects = [
     { id: 1, name: 'ウェブサイトリニューアル', startDate: '2024-04-01', endDate: '2024-06-30', progress: 25, tasks: 20, issues: 3, type: 'customer' },
     { id: 2, name: 'モバイルアプリ開発', startDate: '2024-05-15', endDate: '2024-09-30', progress: 10, tasks: 35, issues: 5, type: 'customer' },
@@ -23,26 +22,6 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter }) => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">プロジェクト管理</h1>
-      <div className="mb-4">
-        <button
-          onClick={() => setFilter('all')}
-          className={`mr-2 px-4 py-2 rounded ${filter === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
-        >
-          全てのプロジェクト
-        </button>
-        <button
-          onClick={() => setFilter('internal')}
-          className={`mr-2 px-4 py-2 rounded ${filter === 'internal' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
-        >
-          社内プロジェクト
-        </button>
-        <button
-          onClick={() => setFilter('customer')}
-          className={`px-4 py-2 rounded ${filter === 'customer' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
-        >
-          顧客プロジェクト
-        </button>
-      </div>
       <table className="min-w-full bg-white">
         <thead>
           <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">

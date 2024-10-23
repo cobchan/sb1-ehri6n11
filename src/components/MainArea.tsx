@@ -5,10 +5,9 @@ import Projects from './modules/Projects';
 
 interface MainAreaProps {
   activeModule: string;
-  setFilter: (filter: 'all' | 'internal' | 'customer') => void;
 }
 
-const MainArea: React.FC<MainAreaProps> = ({ activeModule, setFilter }) => {
+const MainArea: React.FC<MainAreaProps> = ({ activeModule }) => {
   const [filter, setFilterState] = useState<'all' | 'internal' | 'customer'>('all');
 
   const renderModule = () => {
@@ -18,7 +17,7 @@ const MainArea: React.FC<MainAreaProps> = ({ activeModule, setFilter }) => {
       case 'crm':
         return <CRM />;
       case 'projects':
-        return <Projects filter={filter} setFilter={setFilter} />;
+        return <Projects filter={filter} />;
       default:
         return <div>選択されたモジュール: {activeModule}</div>;
     }
