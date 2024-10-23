@@ -137,6 +137,7 @@ const CRM: React.FC = () => {
             <th className="py-3 px-6 text-left">外部システムの顧客ID</th>
             <th className="py-3 px-6 text-left">外部システムの顧客情報ID</th>
             <th className="py-3 px-6 text-left">メモ</th>
+            <th className="py-3 px-6 text-left">顧客詳細情報</th>
           </tr>
         </thead>
         <tbody className="text-gray-600 text-sm font-light">
@@ -184,6 +185,9 @@ const CRM: React.FC = () => {
               <td className="py-3 px-6 text-left">{customer.externalCustomerId}</td>
               <td className="py-3 px-6 text-left">{customer.externalCustomerInfoId}</td>
               <td className="py-3 px-6 text-left">{customer.memo}</td>
+              <td className="py-3 px-6 text-left">
+                <button className="bg-blue-500 text-white px-4 py-2 rounded">詳細</button>
+              </td>
             </tr>
           ))}
         </tbody>
