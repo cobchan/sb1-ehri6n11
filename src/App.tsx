@@ -15,7 +15,7 @@ const App: React.FC = () => {
       <div className="flex flex-1 overflow-hidden">
         <LeftSidebar activeModule={activeModule} setFilter={setFilter} />
         <main className="flex-1 overflow-auto p-4">
-          <MainArea activeModule={activeModule} setFilter={setFilter} />
+          <MainArea activeModule={activeModule} filter={filter} setFilter={setFilter} />
         </main>
         <RightSidebar activeModule={activeModule} />
       </div>

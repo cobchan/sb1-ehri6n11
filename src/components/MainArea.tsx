@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Dashboard from './modules/Dashboard';
 import CRM from './modules/CRM';
 import Projects from './modules/Projects';
 
 interface MainAreaProps {
   activeModule: string;
+  filter: 'all' | 'internal' | 'customer';
 }
 
-const MainArea: React.FC<MainAreaProps> = ({ activeModule }) => {
-  const [filter, setFilterState] = useState<'all' | 'internal' | 'customer'>('all');
+const MainArea: React.FC<MainAreaProps> = ({ activeModule, filter }) => {
 
   const renderModule = () => {
     switch (activeModule) {
