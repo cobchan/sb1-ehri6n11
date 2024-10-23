@@ -5,9 +5,11 @@ import ProjectDetail from './ProjectDetail';
 interface ProjectsProps {
   filter: 'all' | 'internal' | 'customer';
   setFilter: (filter: 'all' | 'internal' | 'customer') => void;
+  selectedCustomer: any;
+  setSelectedCustomer: (customer: any) => void;
 }
 
-const Projects: React.FC<ProjectsProps> = ({ filter, setFilter }) => {
+const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, selectedCustomer, setSelectedCustomer }) => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
